@@ -50,6 +50,7 @@ const FirstRoute = () => (
     <Text>Test 1</Text>
   </View>
 );
+
 const SecondRoute = () => (
   <View
     style={[
@@ -63,6 +64,8 @@ const SecondRoute = () => (
   </View>
 );
 
+const getLabelText = ({ route: { title } }) => title;
+
 class TabViewExample extends Component {
   state = {
     index: 0,
@@ -71,8 +74,9 @@ class TabViewExample extends Component {
       { key: 'second', title: 'Test 2' },
     ],
   };
-  _renderLabel(scene) {
-    const { position, navigationState, getLabelText } = this;
+
+  renderLabel(scene) {
+    const { position, navigationState } = this;
     const { routes } = navigationState;
     const { route } = scene;
 
@@ -105,32 +109,38 @@ class TabViewExample extends Component {
       </Animated.Text>
     );
   }
+
+  renderTabBar = props => (
+    <TabBar
+      indicatorStyle={styles.indicator}
+      renderLabel={this.renderLabel}
+      tabStyle={styles.tabStyle}
+      style={styles.tabBar}
+      {...props}
+    />
+  );
+
+  sceneMap = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+  });
+
+  onIndexChange = index => this.setState({ index });
+
   render() {
     return (
       <TabView
+        onIndexChange={this.onIndexChange}
+        renderTabBar={this.renderTabBar}
         navigationState={this.state}
-        renderScene={SceneMap({
-          first: FirstRoute,
-          second: SecondRoute,
-        })}
+        renderScene={this.sceneMap}
         style={styles.tabView}
-        renderTabBar={props => (
-          <TabBar
-            {...props}
-            getLabelText={({ route: { title } }) => title}
-            indicatorStyle={styles.indicator}
-            renderLabel={this._renderLabel}
-            tabStyle={styles.tabStyle}
-            style={styles.tabBar}
-          />
-        )}
-        onIndexChange={index => this.setState({ index })}
       />
     );
   }
 }
 
-export default props => (
+export default () => (
   <View style={styles.container}>
     <TabViewExample />
   </View>

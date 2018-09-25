@@ -1,9 +1,4 @@
 {
-  "presets": ["@babel/preset-flow", "next/babel"],
-  "plugins": [
-    "@babel/plugin-transform-flow-strip-types",
-    "@babel/plugin-proposal-export-default-from",
-    "@babel/plugin-proposal-optional-chaining",
-    ["react-native-web", { "commonjs": true }]
-  ]
+  "presets": ["next/babel"],
+  "plugins": [["react-native-web", { "commonjs": true }]]
 }

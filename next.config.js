@@ -12,7 +12,15 @@ module.exports = {
     });
     config.module.rules.push({
       test: /\.+(js|jsx)$/,
-      loader: defaultLoaders.babel,
+      use: {
+        loader: 'next-babel-loader',
+        options: {
+          presets: ['module:metro-react-native-babel-preset'],
+          plugins: [
+            ['react-native-web', { commonjs: true }],
+          ],
+        },
+      },
       include: [internalNodeModulesRegExp],
     });
     config.resolve.alias = {
