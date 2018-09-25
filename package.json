@@ -6,13 +6,16 @@
     "start": "next start"
   },
   "dependencies": {
-    "babel-plugin-react-native-web": "^0.8.8",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-plugin-react-native-web": "^0.9.0",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-flow": "^6.23.0",
-    "next": "6.1.2",
-    "react": "16.4.2",
-    "react-art": "16.4.2",
-    "react-dom": "16.4.2",
+    "metro-react-native-babel-preset": "^0.46.0",
+    "next": "7.0.0",
+    "react": "16.5.2",
+    "react-art": "16.5.2",
+    "react-dom": "16.5.2",
     "react-native-tab-view": "^1.0.2",
-    "react-native-web": "^0.8.8"
+    "react-native-web": "^0.9.0"
   }
 }
